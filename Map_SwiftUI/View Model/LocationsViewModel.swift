@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 
+
 class LocationViewModel: ObservableObject{
     
     @Published var locations:[LocationData]
@@ -19,6 +20,10 @@ class LocationViewModel: ObservableObject{
     @Published var mapRegion:MKCoordinateRegion = MKCoordinateRegion()
     @Published var mapSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
 
+    
+    //show
+    @Published var showLocationList:Bool = false
+    
 
 
     
@@ -43,6 +48,20 @@ class LocationViewModel: ObservableObject{
 //        }
        mapRegion = MKCoordinateRegion(center: location.coordinates , span: mapSpan)
 
+    }
+    
+  
+    
+    //toggle the list
+    func toggleLocation() {
+        
+            showLocationList = !showLocationList
+
+    }
+    
+    func showNextLocation(location : LocationData){
+        mapLocation = location
+        showLocationList = false
     }
     
     
